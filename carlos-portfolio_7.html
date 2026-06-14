@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carlos Heredia Viteri — Partnerships & Healthcare Operations</title>
+<meta name="description" content="Partnerships and healthcare operations professional building community partnerships, revenue, and AI-enabled systems for Medi-Cal populations across California." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F7F9F8;
+    --ink:#14232E;
+    --pacific:#0E4D64;
+    --pool:#17939B;
+    --coral:#E8674A;
+    --line:#D9E3E1;
+    --soft:#5A6E78;
+    --max:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans',system-ui,sans-serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--pacific);text-decoration:none}
+  a:hover{color:var(--pool)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--pool);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,249,248,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.01em;color:var(--ink)}
+  .brand span{color:var(--pool)}
+  .nav-links{display:flex;gap:26px;font-family:'Spline Sans Mono',monospace;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+  .nav-links a{color:var(--soft)}
+  .nav-links a:hover{color:var(--pacific)}
+  @media(max-width:680px){.nav-links{display:none}}
+
+  /* ---------- eyebrows (bilingual signature) ---------- */
+  .eyebrow{
+    font-family:'Spline Sans Mono',monospace;
+    font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--pool);display:flex;align-items:center;gap:12px;margin-bottom:18px;
+  }
+  .eyebrow em{font-style:normal;color:var(--soft)}
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:84px 0 64px}
+  .hero h1{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:800;font-size:clamp(2.5rem,6vw,4.3rem);
+    line-height:1.02;letter-spacing:-.02em;max-width:14ch;
+  }
+  .hero h1 .accent{color:var(--pacific)}
+  .hero .subhead{
+    margin-top:18px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;
+    font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.25;color:var(--pacific);max-width:24ch;
+  }
+  .hero .lede{max-width:58ch;margin-top:22px;font-size:1.12rem;color:var(--soft)}
+  .hero .lede strong{color:var(--ink);font-weight:600}
+  .hero-meta{
+    margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;
+    font-family:'Spline Sans Mono',monospace;font-size:.78rem;color:var(--pacific)
+  }
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px}
+  .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;font-weight:600;font-size:.95rem;border-radius:8px;
+    padding:13px 24px;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{background:var(--pacific);color:#fff}
+  .btn-primary:hover{background:var(--pool);color:#fff;transform:translateY(-1px)}
+  .btn-ghost{border:1.5px solid var(--line);color:var(--ink);background:#fff}
+  .btn-ghost:hover{border-color:var(--pool);color:var(--pacific)}
+
+  /* ---------- pipeline signature ---------- */
+  .pipeline{
+    margin-top:70px;background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:30px 30px 26px;
+  }
+  .pipeline-title{
+    font-family:'Spline Sans Mono',monospace;font-size:.74rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--soft);margin-bottom:22px;
+  }
+  .stages{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative}
+  .stage{padding:0 26px;border-left:2px solid var(--line)}
+  .stage:first-child{padding-left:0;border-left:none}
+  .stage .num{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.05;color:var(--pacific)
+  }
+  .stage:last-child .num{color:var(--coral)}
+  .stage .label{font-weight:600;font-size:.95rem;margin-top:4px}
+  .stage .detail{font-size:.85rem;color:var(--soft);margin-top:6px}
+  @media(max-width:680px){
+    .stages{grid-template-columns:1fr}
+    .stage{border-left:none;border-top:2px solid var(--line);padding:18px 0}
+    .stage:first-child{border-top:none;padding-top:0}
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:74px 0;border-top:1px solid var(--line)}
+  h2{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:clamp(1.7rem,3.4vw,2.3rem);letter-spacing:-.01em;margin-bottom:34px;
+  }
+
+  /* impact cards */
+  .impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+  /* ---------- AI engine (centerpiece) ---------- */
+  .ai-section{background:var(--pacific);border-top:1px solid var(--pacific)}
+  .ai-section .eyebrow{color:#8FD6D2}
+  .ai-section .eyebrow em{color:#A9C6CE}
+  .ai-section .eyebrow::after{background:rgba(255,255,255,.18)}
+  .ai-section h2{color:#fff}
+  .ai-lede{color:#CFE6E6;max-width:60ch;font-size:1.12rem;margin-top:-18px;margin-bottom:38px}
+  .ai-lede strong{color:#fff;font-weight:600}
+  .ai-prob{
+    display:grid;grid-template-columns:auto 1fr;gap:14px 18px;align-items:start;
+    margin:0 0 30px;max-width:64ch;
+  }
+  .ai-prob .pk{
+    font-family:'Spline Sans Mono',monospace;font-size:.72rem;letter-spacing:.12em;
+    text-transform:uppercase;color:#E8674A;padding-top:3px;white-space:nowrap;
+  }
+  .ai-prob .pv{color:#DCECEC;font-size:1.04rem;line-height:1.55}
+  .ai-prob .pv strong{color:#fff;font-weight:600}
+  .ai-stat{
+    display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+    border-radius:14px;padding:26px 30px;margin-bottom:30px;
+  }
+  .ai-stat .big{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(1.8rem,4vw,2.8rem);line-height:1;color:#fff;letter-spacing:-.01em;
+  }
+  .ai-stat .big .arrow{color:var(--coral)}
+  .ai-stat .sub{color:#CFE6E6;font-size:.98rem;max-width:38ch}
+  .ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:760px){.ai-grid{grid-template-columns:1fr}}
+  .ai-card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:12px;padding:24px;transition:background .2s ease,border-color .2s ease;
+  }
+  .ai-card:hover{background:rgba(255,255,255,.1);border-color:rgba(143,214,210,.5)}
+  .ai-card .tag{
+    font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;color:#8FD6D2;display:block;margin-bottom:12px;
+  }
+  .ai-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.08rem;color:#fff;margin-bottom:8px}
+  .ai-card p{font-size:.93rem;color:#CFE6E6}
+  .ai-card.wide{grid-column:1/-1}
+  @media(max-width:760px){.impact-grid{grid-template-columns:1fr}}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px;
+  }
+  .card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.08rem;margin-bottom:8px}
+  .card p{font-size:.93rem;color:var(--soft)}
+  .card .tag{
+    font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--pool);display:block;margin-bottom:12px;
+  }
+
+  /* experience */
+  .role{display:grid;grid-template-columns:200px 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--line)}
+  .role:first-of-type{border-top:none;padding-top:0}
+  @media(max-width:760px){.role{grid-template-columns:1fr;gap:8px}}
+  .role .when{
+    font-family:'Spline Sans Mono',monospace;font-size:.78rem;color:var(--soft);
+    letter-spacing:.04em;padding-top:5px;
+  }
+  .role h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.25rem}
+  .role .org{color:var(--pacific);font-weight:600;font-size:.95rem;margin-top:2px}
+  .role ul{margin-top:14px;list-style:none}
+  .role li{
+    position:relative;padding-left:22px;margin-bottom:10px;font-size:.95rem;color:#34454F;
+  }
+  .role li::before{
+    content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;
+    border-radius:2px;background:var(--pool);opacity:.85;
+  }
+  .role li strong{color:var(--ink)}
+
+  /* skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:760px){.skills-grid{grid-template-columns:1fr}}
+  .skill-col h3{
+    font-family:'Spline Sans Mono',monospace;font-size:.74rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--pacific);margin-bottom:14px;
+  }
+  .skill-col ul{list-style:none}
+  .skill-col li{
+    font-size:.93rem;padding:9px 0;border-bottom:1px dashed var(--line);color:#34454F;
+  }
+
+  /* community */
+  .community-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+  @media(max-width:760px){.community-grid{grid-template-columns:1fr}}
+  .panel{
+    border-radius:12px;padding:28px;border:1px solid var(--line);background:#fff;
+  }
+  .panel.deep{background:var(--pacific);border-color:var(--pacific);color:#EAF4F4}
+  .panel.deep h3{color:#fff}
+  .panel.deep .tag{color:#8FD6D2}
+  .panel h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:10px}
+  .panel p{font-size:.93rem}
+  .panel .tag{
+    font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--pool);display:block;margin-bottom:12px;
+  }
+  .panel ul{list-style:none;margin-top:10px}
+  .panel li{font-size:.92rem;padding:6px 0}
+  .panel.deep li{color:#D7E9E9}
+
+  /* footer / contact */
+  footer{border-top:1px solid var(--line);padding:80px 0 60px}
+  footer h2{margin-bottom:14px}
+  footer .lede{color:var(--soft);max-width:52ch}
+  .contact-row{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .fineprint{
+    margin-top:64px;font-family:'Spline Sans Mono',monospace;font-size:.72rem;
+    color:var(--soft);letter-spacing:.06em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">Carlos Heredia <span>Viteri</span></div>
+    <div class="nav-links">
+      <a href="#ai">AI Engine</a>
+      <a href="#impact">Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#press">Press</a>
+      <a href="#skills">Skills</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Partnerships &amp; Healthcare Operations <em>/ Alianzas y operaciones de salud</em></div>
+    <h1>Care that <span class="accent">reaches everyone.</span></h1>
+    <p class="subhead">Partnerships that connect underserved communities to the care they deserve.</p>
+    <p class="lede">I work at the intersection of <strong>partnerships, sales enablement, and AI systems</strong> — combining hands-on healthcare delivery, community outreach, HubSpot operations, and AI workflow design to expand access to high-quality care. Bilingual and culturally responsive, in English y en español.</p>
+    <div class="hero-meta">
+      <span class="chip">Pair Team · Partner Engagement Lead</span>
+      <span class="chip">HubSpot CRM</span>
+      <span class="chip">Claude AI · Prompt Engineering</span>
+      <span class="chip">EN / ES</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/carlosheredia4" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+
+    <div class="pipeline reveal">
+      <div class="pipeline-title">How I work — build the systems, then close the deals</div>
+      <div class="stages">
+        <div class="stage">
+          <div class="num">Build</div>
+          <div class="label">AI systems &amp; tooling</div>
+          <div class="detail">Designed the AI Partnership Engine the whole team now runs on — proposals, evaluations, and reporting in minutes.</div>
+        </div>
+        <div class="stage">
+          <div class="num">Reach</div>
+          <div class="label">Statewide outreach</div>
+          <div class="detail">Sourced and developed partnerships across multiple California counties through hands-on business development — including a 211 LA partnership projected to generate millions.</div>
+        </div>
+        <div class="stage">
+          <div class="num">$357K+</div>
+          <div class="label">Closed &amp; signed by me</div>
+          <div class="detail">Annualized revenue from partnership contracts I personally owned and signed — onboarding new CBO partners to Medi-Cal ECM &amp; Community Health programs.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="ai" class="ai-section">
+  <div class="wrap">
+    <div class="eyebrow">Flagship work <em>/ Trabajo destacado</em></div>
+    <h2>I turned a broken workflow into an AI engine</h2>
+
+    <div class="ai-prob reveal">
+      <div class="pk">The problem</div>
+      <div class="pv">Our partnerships team was stuck in a slow, manual workflow — proposals, evaluations, and reports each took <strong>hours</strong> of digging through scattered information. With a lean team, we couldn't chase enough leads or move fast enough to scale.</div>
+      <div class="pk">What I built</div>
+      <div class="pv">As a non-engineer, I designed and built an <strong>AI-powered operating layer</strong> for the entire partnerships function — a central Claude system the team uses every day to research, write, report, and close.</div>
+      <div class="pk">The result</div>
+      <div class="pv">Work that took hours now takes minutes, the whole team runs on it daily, and it <strong>directly powered the deals I sourced and closed</strong> — from $357K in signed contracts to the 211 LA partnership projected to generate millions.</div>
+    </div>
+
+    <div class="ai-stat reveal">
+      <div class="big">Hours <span class="arrow">→</span> minutes</div>
+      <div class="sub">Gathering the information to draft a proposal or complete an evaluation went from hours of manual digging to a couple of minutes — for every person on the team.</div>
+    </div>
+
+    <div class="ai-grid">
+      <div class="ai-card wide reveal">
+        <span class="tag">The Core</span>
+        <h3>A central Claude workspace — the team's brain</h3>
+        <p>The foundation: a Claude project I build and maintain, loaded with all of our partnership information. Instead of hunting through scattered docs, anyone can ask Claude directly and navigate the team's entire knowledge base — and everything else runs on top of it.</p>
+      </div>
+      <div class="ai-card reveal">
+        <span class="tag">Generate</span>
+        <h3>Proposals, evaluations &amp; custom emails</h3>
+        <p>The team generates partnership proposals, fills out evaluation documents, and drafts tailored outreach emails through Claude — consistent, fast, and grounded in our real data.</p>
+      </div>
+      <div class="ai-card reveal">
+        <span class="tag">Integrate</span>
+        <h3>HubSpot, run inside Claude</h3>
+        <p>I wired our CRM directly into the workspace, so the team can run HubSpot from within Claude — no context-switching between tools to manage contacts, deals, and pipeline.</p>
+      </div>
+      <div class="ai-card reveal">
+        <span class="tag">Report</span>
+        <h3>Automated reporting via Claude skills</h3>
+        <p>I built our automated reporting systems as Claude skills wired into our connectors, generating network and pipeline reports polished enough to be approved by our executive team.</p>
+      </div>
+      <div class="ai-card reveal">
+        <span class="tag">Scale</span>
+        <h3>BDA consultant program management</h3>
+        <p>I manage a program of Business Development Associates — outside consultants who connect us to new sales leads — and use Claude to coordinate and scale the program's output.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="wrap">
+    <div class="eyebrow">Selected impact <em>/ Impacto destacado</em></div>
+    <h2>More work I'm proud of</h2>
+    <div class="impact-grid">
+      <div class="card reveal" style="grid-column:1/-1">
+        <span class="tag">Business Development · Sourced &amp; Developed</span>
+        <h3>211 LA partnership — projected to generate millions</h3>
+        <p>Sourced and developed a major partnership with 211 LA through hands-on business development — opening and building the relationship that's projected to generate millions in annualized revenue for the company.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Strategic Evaluation</span>
+        <h3>Health Choice Network deal analysis</h3>
+        <p>Authored the comprehensive evaluation for HCN — the 2nd-largest Medicaid FQHC aggregator (~180K lives, 90+ FQHCs, 9 states) and a ~28K-beneficiary Medicare ACO — supporting a Medicare Advantage/ACCESS deal.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Territory Strategy</span>
+        <h3>LA &amp; Orange County CBO landscape analyses</h3>
+        <p>Mapped the community-based organization landscape from scratch — FQHCs, health plans, and ECM contractors — enabling proactive territory planning instead of reactive outreach.</p>
+      </div>
+      <div class="card reveal" style="grid-column:1/-1">
+        <span class="tag">Field Operations</span>
+        <h3>Pair Cares outreach infrastructure</h3>
+        <p>Led in-person welfare checks for high-risk Medi-Cal members who had gone silent — then built the tracking infrastructure behind it: master tracking tables in Google Sheets with light automation to reduce manual data entry, coordinated documentation, and guidance materials adopted by the LCM team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Experience <em>/ Experiencia</em></div>
+    <h2>Where I've done the work</h2>
+
+    <div class="role reveal">
+      <div class="when">Oct 2025 — Present<br>Remote</div>
+      <div>
+        <h3>Partner Engagement Lead</h3>
+        <div class="org">Pair Team</div>
+        <ul>
+          <li><strong>$357K+ in annualized revenue from contracts I personally closed and signed</strong>, plus major partnerships sourced through business development — including 211 LA, projected to generate millions.</li>
+          <li>Grow Pair Team's Partner Impact Network by identifying, pitching, and onboarding CBOs into Medi-Cal ECM and Community Health programs.</li>
+          <li>Designed and built the team's <strong>AI Partnership Engine</strong> — a central Claude workspace for proposals, evaluations, and reporting, with HubSpot run directly inside Claude — turning hours of manual work into minutes.</li>
+          <li>Translate complex ECM, Community Supports, and ILOS benefit structures into clear value propositions for community organization leadership.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role reveal">
+      <div class="when">Apr 2024 — Oct 2025<br>Remote</div>
+      <div>
+        <h3>Lead Care Manager</h3>
+        <div class="org">Pair Team</div>
+        <ul>
+          <li>Managed complex Medi-Cal caseloads across Los Angeles County, connecting high-needs members to ECM, Community Supports, and SDOH resources.</li>
+          <li>Led the <strong>Pair Cares Initiative</strong> — in-person welfare checks, including door-knocking at last known addresses, for high-risk members who had gone silent.</li>
+          <li>Go-to resource for benefit documentation, transportation coordination, and dashboard workflows; informally mentored new LCMs and authored team guidance docs.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role reveal">
+      <div class="when">2023 — 2024<br>Glendale, CA</div>
+      <div>
+        <h3>Medical Assistant</h3>
+        <div class="org">Forward Health</div>
+        <ul>
+          <li>Managed patient scheduling and clinic workflow; maintained accurate records in EHR systems.</li>
+          <li>Delivered patient education on preventive care, partnering with providers to better serve patients with limited English proficiency.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role reveal">
+      <div class="when">2017 — 2019</div>
+      <div>
+        <h3>Research — Cedars-Sinai &amp; Whittier College</h3>
+        <div class="org">Research Intern · Research Assistant</div>
+        <ul>
+          <li>Built a web-based data portal for ovarian cancer research at Cedars-Sinai, improving data accessibility for a multidisciplinary team.</li>
+          <li>Conducted immunological research on resveratrol and sirtuin gene expression; trained in cell culture and flow cytometry.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="press">
+  <div class="wrap">
+    <div class="eyebrow">In the press <em>/ En la prensa</em></div>
+    <h2>The work, validated</h2>
+    <div class="skills-grid">
+      <div class="card reveal">
+        <span class="tag">TechCrunch · May 2026</span>
+        <h3>Medicare's new payment model is built for AI</h3>
+        <p>TechCrunch covers Pair Team's acceptance into CMS's ACCESS program — one of 150 organizations selected to test AI-driven care at federal scale. The Medicare Advantage/ACCESS opportunity is the same frontier behind my Health Choice Network evaluation.</p>
+        <p style="margin-top:14px"><a href="https://techcrunch.com/2026/05/12/medicares-new-payment-model-is-built-for-ai-and-most-of-the-tech-world-has-no-idea/" target="_blank" rel="noopener">Read the article ↗</a></p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Journal of General Internal Medicine</span>
+        <h3>Peer-reviewed validation of the ECM model</h3>
+        <p>A published study of Pair Team's Enhanced Care Management intervention — the care model I delivered daily as a Lead Care Manager — found a 52% reduction in ER visits and a 26% reduction in hospitalizations among Medi-Cal members.</p>
+        <p style="margin-top:14px"><a href="https://link.springer.com/article/10.1007/s11606-025-09839-2" target="_blank" rel="noopener">Read the study ↗</a></p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Recognition · 2019</span>
+        <h3>Young Man of the Year — City of Commerce</h3>
+        <p>Recognized by my hometown for community contribution — the roots of a career built on showing up for the communities I come from.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Toolkit <em>/ Herramientas</em></div>
+    <h2>What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-col reveal">
+        <h3>Revenue &amp; Partnerships</h3>
+        <ul>
+          <li>Partnership development &amp; deal closing</li>
+          <li>Community-based outreach</li>
+          <li>Sales enablement</li>
+          <li>Territory &amp; landscape analysis</li>
+        </ul>
+      </div>
+      <div class="skill-col reveal">
+        <h3>Systems &amp; Data</h3>
+        <ul>
+          <li>HubSpot CRM — pipelines, automation, reporting</li>
+          <li>Claude AI &amp; prompt engineering</li>
+          <li>Process automation</li>
+          <li>Data analysis &amp; reporting</li>
+        </ul>
+      </div>
+      <div class="skill-col reveal">
+        <h3>Healthcare Domain</h3>
+        <ul>
+          <li>Medi-Cal ECM, Community Supports, ILOS</li>
+          <li>FQHC &amp; CBO landscape (California)</li>
+          <li>Care coordination &amp; health equity</li>
+          <li>EHR systems · Bilingual EN/ES</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="wrap">
+    <div class="eyebrow">Beyond the pipeline <em>/ Más allá del trabajo</em></div>
+    <h2>Community &amp; competition</h2>
+    <div class="community-grid">
+      <div class="panel reveal">
+        <span class="tag">Volunteering</span>
+        <h3>Clínica de Chimborazo, Ecuador &amp; Medical Brigade, Panama</h3>
+        <p>Years of hands-on service in under-resourced clinics — patient intake, health education in Spanish, educational materials, and logistics for medical outreach programs.</p>
+        <ul>
+          <li>Clínica de Chimborazo · 2018, 2020, 2021–2025</li>
+          <li>Medical Brigade, Panama · 2019</li>
+        </ul>
+      </div>
+      <div class="panel deep reveal">
+        <span class="tag">Water Polo</span>
+        <h3>International athlete, champion coach, nonprofit leader</h3>
+        <p>Ecuador National Team member and semi-professional player with the Los Angeles Athletics (2017–2025). Assistant Men's Coach at the University of Redlands — <strong>2024 NCAA Division III National Champions</strong>.</p>
+        <ul>
+          <li>Board of Directors, LAAC Water Polo — nonprofit leadership &amp; event management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact <em>/ Contacto</em></div>
+    <h2>Let's expand access to care.</h2>
+    <p class="lede">Open to conversations about partnerships, healthcare operations, and AI-enabled go-to-market work — in English o en español.</p>
+    <div class="contact-row">
+      <a class="btn btn-primary" href="mailto:carlosherediaviteri@gmail.com">carlosherediaviteri@gmail.com</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/carlosheredia4" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="fineprint">
+      <span>© 2026 Carlos Heredia Viteri</span>
+      <span>English · Español</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    items.forEach(el => io.observe(el));
+  } else {
+    items.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
