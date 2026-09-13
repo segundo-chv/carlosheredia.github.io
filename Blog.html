@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segundo</title>
+<meta name="description" content="Segundo writes about nerdy things, sport, and food.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky:     #C3DFF2;
+    --sky-dp:  #A9CFE8;
+    --panel:   #FCFDFE;
+    --ink:     #0F2E49;
+    --mid:     #4E6E88;
+    --gold:    #E8B21C;
+    --red:     #C9483C;
+    --blue:    #1E6BA8;
+    --leaf:    #2E8B62;
+    --plum:    #7A4E9C;
+    --line:    #9FC4DE;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--sky);
+    background-image:
+      radial-gradient(var(--sky-dp) 1px, transparent 1px);
+    background-size: 14px 14px;
+    color: var(--ink);
+    font-family: "Spectral", Georgia, serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 54rem; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .1rem 1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .wordmark {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.85rem;
+    letter-spacing: -0.035em;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .handle { font-style: italic; color: var(--mid); font-size: .95rem; }
+
+  .premise { max-width: 34rem; margin: 1.6rem 0 0; }
+
+  /* ---------- filters ---------- */
+
+  .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2.6rem 0 1.5rem; }
+
+  .chip {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 600; font-size: .78rem; letter-spacing: .01em;
+    padding: .42rem .85rem;
+    border: 1.5px solid var(--ink); border-radius: 999px;
+    background: var(--panel); color: var(--ink); cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+  }
+
+  .chip:hover { background: var(--sky-dp); }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--sky); }
+  .chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  /* ---------- board ---------- */
+
+  .board {
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1rem;
+  }
+
+  .board li { display: flex; }
+
+  .kit {
+    position: relative; flex: 1;
+    display: flex; flex-direction: column;
+    background: var(--panel);
+    border: 1.5px solid var(--ink);
+    padding: 1.05rem 1.1rem 1.1rem;
+    min-height: 11rem;
+    text-decoration: none; color: inherit;
+    overflow: hidden;
+    transition: transform .16s ease;
+  }
+
+  /* colour stripe */
+  .kit::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 6px;
+    background: var(--blue);
+  }
+
+  /* screentone — manga halftone, tinted per category */
+  .kit::after {
+    content: ""; position: absolute;
+    right: -2.5rem; bottom: -2.5rem;
+    width: 11rem; height: 11rem;
+    border-radius: 50%;
+    background-image: radial-gradient(currentColor 1.6px, transparent 1.7px);
+    background-size: 7px 7px;
+    color: var(--blue);
+    opacity: .22;
+    pointer-events: none;
+  }
+
+  .kit[data-cat="movies"]::before { background: var(--red); }
+  .kit[data-cat="movies"]::after  { color: var(--red); opacity: .26; }
+  .kit[data-cat="shows"]::before  { background: var(--gold); }
+  .kit[data-cat="shows"]::after   { color: var(--gold); opacity: .34; }
+  .kit[data-cat="books"]::before  { background: var(--ink); }
+  .kit[data-cat="books"]::after   { color: var(--ink); opacity: .16; }
+  .kit[data-cat="sport"]::before  { background: var(--blue); }
+  .kit[data-cat="sport"]::after   { color: var(--blue); }
+  .kit[data-cat="food"]::before   { background: var(--leaf); }
+  .kit[data-cat="food"]::after    { color: var(--leaf); opacity: .26; }
+  .kit[data-cat="travel"]::before { background: var(--plum); }
+  .kit[data-cat="travel"]::after  { color: var(--plum); opacity: .24; }
+
+  .kit:hover { transform: translateY(-3px); }
+  .kit:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+  .kit-top {
+    position: relative; z-index: 1;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem; margin: .5rem 0 .75rem;
+  }
+
+  .cat {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 600; font-size: .68rem; letter-spacing: .06em;
+    color: var(--mid); margin: 0; padding-top: .5rem;
+  }
+
+  .number {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 800; font-size: 3.1rem; line-height: .82;
+    letter-spacing: -0.055em; color: var(--ink);
+  }
+
+  /* unrated pieces get a mark instead of a score */
+  .mark {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 800; font-size: .7rem; letter-spacing: .08em;
+    color: var(--mid);
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: .3rem .7rem;
+    white-space: nowrap;
+  }
+
+  /* optional hand-drawn art — drop an <img class="art"> in as the first
+     child of .kit. Sits above the screentone, under the text. */
+  .art {
+    position: absolute; inset: 6px 0 auto 0;
+    width: 100%; height: 6.5rem;
+    object-fit: cover;
+    opacity: .9;
+    z-index: 0;
+  }
+
+  .kit:has(.art) { padding-top: 7rem; }
+  .kit:has(.art)::after { display: none; }
+
+  .kit h3 {
+    position: relative; z-index: 1;
+    font-family: "Spectral", Georgia, serif;
+    font-weight: 400; font-size: 1.1rem; line-height: 1.3; margin: 0;
+  }
+
+  .when {
+    position: relative; z-index: 1;
+    margin-top: auto; padding-top: 1rem;
+    color: var(--mid); font-size: .8rem; font-style: italic;
+  }
+
+  .empty {
+    grid-column: 1 / -1;
+    border: 1.5px dashed var(--line);
+    background: var(--panel);
+    padding: 2.2rem 1.25rem;
+    color: var(--mid); text-align: center;
+  }
+
+  /* ---------- now ---------- */
+
+  .now {
+    margin-top: 2.6rem;
+    background: var(--panel);
+    border: 1.5px solid var(--ink);
+    padding: 1.1rem 1.2rem;
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: .5rem 1.4rem;
+  }
+
+  .now b {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 600; font-size: .7rem; letter-spacing: .06em; color: var(--mid);
+  }
+
+  .now span { font-size: .95rem; }
+
+  .now i {
+    font-style: normal;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  /* ---------- elsewhere ---------- */
+
+  .elsewhere {
+    margin-top: 3rem; padding-top: 1.4rem;
+    border-top: 2px solid var(--ink);
+    display: flex; flex-wrap: wrap; gap: .6rem 2rem; align-items: baseline;
+  }
+
+  .elsewhere > b {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 600; font-size: .72rem; letter-spacing: .05em;
+    color: var(--mid); margin-right: -1.4rem;
+  }
+
+  a.out {
+    color: var(--ink); text-decoration: none;
+    border-bottom: 2px solid var(--gold); padding-bottom: 1px;
+    transition: border-color .16s ease;
+  }
+
+  a.out:hover { border-bottom-color: var(--red); }
+  a.out:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  @media (max-width: 34rem) {
+    .page { padding-top: 2.5rem; }
+    .board { grid-template-columns: 1fr; }
+    .kit { min-height: 9.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    .kit:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+
+    <header class="masthead">
+      <h1 class="wordmark">Segundo</h1>
+      <span class="handle">Segundo4Etapa most places.</span>
+    </header>
+
+    <p class="premise">My opinions on the things I spend too much time on.
+    Most come with a score attached, which I then have to justify.</p>
+
+    <div class="filters">
+      <button class="chip" data-filter="all"   aria-pressed="true">Everything</button>
+      <button class="chip" data-filter="movies" aria-pressed="false">Movies</button>
+      <button class="chip" data-filter="shows"  aria-pressed="false">Shows</button>
+      <button class="chip" data-filter="books"  aria-pressed="false">Books</button>
+      <button class="chip" data-filter="sport"  aria-pressed="false">Sport</button>
+      <button class="chip" data-filter="food"   aria-pressed="false">Food</button>
+      <button class="chip" data-filter="travel" aria-pressed="false">Travel</button>
+    </div>
+
+    <ul class="board" id="board"></ul>
+    <noscript>
+      <p style="margin-top:1rem">The board needs JavaScript. Posts are also at
+      <a class="out" href="https://substack.com/@segundo4etapa">Substack</a>.</p>
+    </noscript>
+
+    <!-- Update this line every couple of weeks. It is the cheapest way to
+         keep the page feeling current. -->
+    <div class="now">
+      <b>CURRENTLY</b>
+      <span>Watching <i>Lanterns</i></span>
+      <span>Reading <i>Never Split the Difference</i></span>
+      <span>Just back from <i>Croatia</i></span>
+    </div>
+
+    <div class="elsewhere">
+      <b>ELSEWHERE</b>
+      <!-- Swap to the publication URL (segundo4etapa.substack.com) once it exists -->
+      <a class="out" href="https://substack.com/@segundo4etapa">Substack</a>
+      <a class="out" href="https://www.linkedin.com/in/carlosheredia4">LinkedIn</a>
+      <!-- Swap in whichever address you want public -->
+      <a class="out" href="mailto:hello@heredia-viteri.org">Email me</a>
+    </div>
+
+  </main>
+
+<script>
+/* ===========================================================================
+   POSTS - this is the only thing you edit when you publish something.
+
+   Add the newest post at the TOP of the list. One line each:
+
+     { cat: "shows", score: 9,       title: "...", when: "Sep 2026", url: "..." },
+     { cat: "sport", score: "ESSAY", title: "...", when: "Sep 2026", url: "..." },
+
+   cat   : movies | shows | books | sport | food | travel
+   score : a number 1-10, or "ESSAY" for unrated pieces
+   when  : whatever you want shown, e.g. "Sep 2026"
+   url   : the Substack link
+
+   Keep about nine here. Delete the oldest when you add a new one - Substack
+   holds the full archive.
+
+   EVERYTHING BELOW THIS BLOCK CAN BE LEFT ALONE.
+   =========================================================================== */
+
+const POSTS = [
+  { cat: "shows",  score: 9,       title: "Vinland Saga stops being an action show",        when: "Sep 2026", url: "#" },
+  { cat: "sport",  score: "ESSAY", title: "Why water polo keeps losing its best athletes",  when: "Sep 2026", url: "#" },
+  { cat: "food",   score: 6,       title: "The encebollado I have been chasing for ten years", when: "Sep 2026", url: "#" },
+  { cat: "movies", score: 8,       title: "Perfect Blue at twenty-eight",                   when: "Aug 2026", url: "#" },
+  { cat: "travel", score: "ESSAY", title: "Three days in Guayaquil is enough and also not nearly", when: "Aug 2026", url: "#" },
+  { cat: "books",  score: 7,       title: "Blame! is architecture with a plot attached",    when: "Aug 2026", url: "#" },
+];
+
+/* --------------------------------------------------------------------------
+   Rendering. No need to touch this.
+   -------------------------------------------------------------------------- */
+(function () {
+  var LABELS = {
+    movies: "Movies", shows: "Shows", books: "Books",
+    sport: "Sport",  food: "Food",   travel: "Travel"
+  };
+
+  var board = document.getElementById('board');
+  var chips = document.querySelectorAll('.chip');
+  var active = 'all';
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function card(p) {
+    var badge = (typeof p.score === 'number')
+      ? '<span class="number">' + esc(p.score) + '</span>'
+      : '<span class="mark">' + esc(p.score || 'ESSAY') + '</span>';
+
+    var art = p.art ? '<img class="art" src="' + esc(p.art) + '" alt="">' : '';
+
+    return '<li>' +
+      '<a class="kit" data-cat="' + esc(p.cat) + '" href="' + esc(p.url || '#') + '">' +
+        art +
+        '<div class="kit-top">' +
+          '<p class="cat">' + esc(LABELS[p.cat] || p.cat) + '</p>' +
+          badge +
+        '</div>' +
+        '<h3>' + esc(p.title) + '</h3>' +
+        '<p class="when">' + esc(p.when || '') + '</p>' +
+      '</a></li>';
+  }
+
+  function render() {
+    var list = (active === 'all') ? POSTS : POSTS.filter(function (p) { return p.cat === active; });
+
+    if (!list.length) {
+      board.innerHTML = '<li class="empty">Nothing here yet. Give it a week.</li>';
+      return;
+    }
+    board.innerHTML = list.map(card).join('');
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      active = chip.dataset.filter;
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
