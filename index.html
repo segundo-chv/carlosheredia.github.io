@@ -312,36 +312,18 @@
 
 <script>
 /* ===========================================================================
-   POSTS - this is the only thing you edit when you publish something.
+   The board reads posts.json, which sits next to this file in the repo.
+   You edit posts.json - not this file - when you publish something.
 
-   Add the newest post at the TOP of the list. One line each:
-
-     { cat: "shows", score: 9,       title: "...", when: "Sep 2026", url: "..." },
-     { cat: "sport", score: "ESSAY", title: "...", when: "Sep 2026", url: "..." },
-
-   cat   : movies | shows | books | sport | food | travel
-   score : a number 1-10, or "ESSAY" for unrated pieces
-   when  : whatever you want shown, e.g. "Sep 2026"
-   url   : the Substack link
-
-   Keep about nine here. Delete the oldest when you add a new one - Substack
-   holds the full archive.
-
-   EVERYTHING BELOW THIS BLOCK CAN BE LEFT ALONE.
+   FALLBACK below is used only if posts.json fails to load (missing, bad
+   JSON, or you opened this file straight from disk instead of a server).
+   Leave it empty and the board shows a clean "nothing here yet" message.
+   Once you have a few real posts, it is worth pasting two or three in here
+   so the site is never blank.
    =========================================================================== */
 
-const POSTS = [
-  { cat: "shows",  score: 9,       title: "Vinland Saga stops being an action show",        when: "Sep 2026", url: "#" },
-  { cat: "sport",  score: "ESSAY", title: "Why water polo keeps losing its best athletes",  when: "Sep 2026", url: "#" },
-  { cat: "food",   score: 6,       title: "The encebollado I have been chasing for ten years", when: "Sep 2026", url: "#" },
-  { cat: "movies", score: 8,       title: "Perfect Blue at twenty-eight",                   when: "Aug 2026", url: "#" },
-  { cat: "travel", score: "ESSAY", title: "Three days in Guayaquil is enough and also not nearly", when: "Aug 2026", url: "#" },
-  { cat: "books",  score: 7,       title: "Blame! is architecture with a plot attached",    when: "Aug 2026", url: "#" },
-];
+const FALLBACK = [];
 
-/* --------------------------------------------------------------------------
-   Rendering. No need to touch this.
-   -------------------------------------------------------------------------- */
 (function () {
   var LABELS = {
     movies: "Movies", shows: "Shows", books: "Books",
@@ -350,11 +332,21 @@ const POSTS = [
 
   var board = document.getElementById('board');
   var chips = document.querySelectorAll('.chip');
+  var posts = [];
   var active = 'all';
 
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  /* Drop anything malformed rather than letting one bad entry blank the
+     board - a scheduled job will be writing this file later. */
+  function clean(list) {
+    if (!Array.isArray(list)) return [];
+    return list.filter(function (p) {
+      return p && typeof p.title === 'string' && p.title.trim() && LABELS[p.cat];
     });
   }
 
@@ -370,7 +362,7 @@ const POSTS = [
         'data-cat="' + esc(p.cat) + '" href="' + esc(p.url || '#') + '">' +
         art +
         '<div class="kit-top">' +
-          '<p class="cat">' + esc(LABELS[p.cat] || p.cat) + '</p>' +
+          '<p class="cat">' + esc(LABELS[p.cat]) + '</p>' +
           badge +
         '</div>' +
         '<h3>' + esc(p.title) + '</h3>' +
@@ -379,13 +371,13 @@ const POSTS = [
   }
 
   function render() {
-    var list = (active === 'all') ? POSTS : POSTS.filter(function (p) { return p.cat === active; });
+    var list = (active === 'all')
+      ? posts
+      : posts.filter(function (p) { return p.cat === active; });
 
-    if (!list.length) {
-      board.innerHTML = '<li class="empty">Nothing here yet. Give it a week.</li>';
-      return;
-    }
-    board.innerHTML = list.map(card).join('');
+    board.innerHTML = list.length
+      ? list.map(card).join('')
+      : '<li class="empty">Nothing here yet. Give it a week.</li>';
   }
 
   chips.forEach(function (chip) {
@@ -395,6 +387,22 @@ const POSTS = [
       render();
     });
   });
+
+  fetch('posts.json', { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('posts.json returned ' + r.status);
+      return r.json();
+    })
+    .then(function (data) {
+      posts = clean(data);
+      if (!posts.length) posts = clean(FALLBACK);
+      render();
+    })
+    .catch(function (err) {
+      console.warn('Falling back to inline posts:', err.message);
+      posts = clean(FALLBACK);
+      render();
+    });
 
   render();
 })();
