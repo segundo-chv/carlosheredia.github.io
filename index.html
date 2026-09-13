@@ -300,10 +300,12 @@
     <div class="elsewhere">
       <b>ELSEWHERE</b>
       <!-- Swap to the publication URL (segundo4etapa.substack.com) once it exists -->
-      <a class="out" href="https://substack.com/@segundo4etapa">Substack</a>
-      <a class="out" href="https://www.linkedin.com/in/carlosheredia4">LinkedIn</a>
+      <a class="out" href="https://substack.com/@segundo4etapa"
+         target="_blank" rel="noopener noreferrer">Substack</a>
+      <a class="out" href="https://www.linkedin.com/in/carlosheredia4"
+         target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <!-- Swap in whichever address you want public -->
-      <a class="out" href="mailto:hello@heredia-viteri.org">Email me</a>
+      <a class="out" href="mailto:carlosherediaviteri@gmail.com">Email me</a>
     </div>
 
   </main>
@@ -364,7 +366,8 @@ const POSTS = [
     var art = p.art ? '<img class="art" src="' + esc(p.art) + '" alt="">' : '';
 
     return '<li>' +
-      '<a class="kit" data-cat="' + esc(p.cat) + '" href="' + esc(p.url || '#') + '">' +
+      '<a class="kit" target="_blank" rel="noopener noreferrer" ' +
+        'data-cat="' + esc(p.cat) + '" href="' + esc(p.url || '#') + '">' +
         art +
         '<div class="kit-top">' +
           '<p class="cat">' + esc(LABELS[p.cat] || p.cat) + '</p>' +
